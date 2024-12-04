@@ -9,6 +9,7 @@ class Game {
         this.background = new Background(this);
         this.sound = new AudioControl();
         this.player = new Player(this);
+        this.restart = document.getElementById("restart");
         this.obstacles = [];
         this.numberOfObstacles = 2;
         this.eventTimer = 0;
@@ -19,6 +20,10 @@ class Game {
 
         this.resize(window.innerWidth, window.innerHeight);
 
+        this.restart.addEventListener('click', e => {
+            this.restartGame();
+        })
+
         window.addEventListener('resize', e => {
             this.resize(e.currentTarget.innerWidth, e.currentTarget.innerHeight);
         });
@@ -28,17 +33,16 @@ class Game {
         })
 
         window.addEventListener('mouseup', e => {
-            setTimeout(() =>{
+            setTimeout(() => {
                 this.player.wingsUp();
-            },50);
+            }, 50);
         })
 
         window.addEventListener('keydown', e => {
             if (e.key === ' ' || e.key === 'Enter') this.player.flap();
             if (e.key === 'Shift' || e.key.toLowerCase() === 'c') this.player.startCharge();
             if (e.key.toLowerCase() === 'r') {
-                this.resize(window.innerWidth, window.innerHeight);
-                this.numberOfObstacles++;
+                this.restartGame();
             }
             if (e.key.toLowerCase() === 'd') this.debug = !this.debug;
         });
@@ -60,10 +64,15 @@ class Game {
         window.addEventListener('touchend', e => {
             if (e.changedTouches[0].pageX - this.touchStartX > this.swipeDistance) {
                 this.player.startCharge();
-            }else {
+            } else {
                 this.player.flap();
             }
         })
+    }
+
+    restartGame() {
+        this.resize(window.innerWidth, window.innerHeight);
+        this.numberOfObstacles++;
     }
 
     resize(width, height) {
@@ -93,6 +102,7 @@ class Game {
         this.score = 0;
         this.gameOver = false;
         this.timer = 0;
+        this.buttonPadding = 10 * this.ratio;
     }
 
     render(deltaTime) {
@@ -107,6 +117,7 @@ class Game {
             obstacle.update();
             obstacle.draw();
         });
+        this.restart.style.padding = this.buttonPadding + "px";
     }
 
     createObstacles() {
