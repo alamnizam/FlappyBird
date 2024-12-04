@@ -2,13 +2,38 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Steam Punk Flappy Bird</title>
+
     <link rel="stylesheet" href="css/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
+
+
 </head>
 <body>
     <canvas id="canvas1"></canvas>
+
+    <div class="assets">
+        <img src="assets/img/background_single.png" alt="background" id="background">
+        <img src="assets/img/player_fish.png" alt="fish" id="player_fish">
+        <img src="assets/img/smallGears.png" alt="Small Gears" id="smallGears">
+        <audio id="charge" src="assets/sounds/charge.mp3"></audio>
+        <audio id="flap1" src="assets/sounds/flap1.mp3"></audio>
+        <audio id="flap2" src="assets/sounds/flap2.mp3"></audio>
+        <audio id="flap3" src="assets/sounds/flap3.mp3"></audio>
+        <audio id="flap4" src="assets/sounds/flap4.mp3"></audio>
+        <audio id="flap5" src="assets/sounds/flap5.mp3"></audio>
+        <audio id="win" src="assets/sounds/win.mp3"></audio>
+        <audio id="lose" src="assets/sounds/lose.mp3"></audio>
+    </div>
+
+    <script src="js/audio.js"></script>
+    <script src="js/background.js"></script>
     <script src="js/player.js"></script>
+    <script src="js/obstacle.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
